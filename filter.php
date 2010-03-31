@@ -113,11 +113,9 @@ function flip_text($text='', $reverse=false, $flip=false) {
     $matches3 = array();
     $replace3 = array();
 
-    preg_match_all($regex, $text, $matches, PREG_SET_ORDER);
-    preg_match_all($regex2, $text, $matches2, PREG_SET_ORDER);
-    preg_match_all($regex3, $text, $matches3, PREG_SET_ORDER);
 
     /// Let's break the original text apart
+    preg_match_all($regex, $text, $matches, PREG_SET_ORDER);
     foreach ($matches as $key=>$match) {
         $longkey = sprintf("%03d", $key);
         $revlongkey = strrev($longkey);
@@ -125,6 +123,7 @@ function flip_text($text='', $reverse=false, $flip=false) {
         $text = str_replace($match[0], $replace[$key], $text);
     }
 
+    preg_match_all($regex2, $text, $matches2, PREG_SET_ORDER);
     foreach ($matches2 as $key=>$match) {
         $longkey = sprintf("%03d", $key);
         $revlongkey = strrev($longkey);
@@ -132,6 +131,7 @@ function flip_text($text='', $reverse=false, $flip=false) {
         $text = str_replace($match[0], $replace2[$key], $text);
     }
 
+    preg_match_all($regex3, $text, $matches3, PREG_SET_ORDER);
     foreach ($matches3 as $key=>$match) {
         $longkey = sprintf("%03d", $key);
         $revlongkey = strrev($longkey);

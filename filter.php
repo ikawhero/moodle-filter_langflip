@@ -104,7 +104,7 @@ function flip_text($text='', $reverse=false, $flip=false) {
     $replace = array();
 
     /// Short tags
-    $regex2 = "/(<[A-Za-z][A-Za-z0-9 ]*?\/>)/";
+    $regex2 = "/(<[A-Za-z].*?\/>)/";
     $matches2 = array();
     $replace2 = array();
 

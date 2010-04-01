@@ -102,6 +102,10 @@ function flip_text($text='', $reverse=false, $flip=false) {
         $alphabet = $latin + $others;
     }
 
+    /// Define other special characters
+    $specialsearch = array("\n", "\r", "\t");
+    $specialreplace = array('$@1@$', '$@2@$', '$@3@$');
+
     /// Long tags
     $regex = "/<(([A-Za-z][A-Za-z0-9]*)\b[^>]*?)>(.*?)<\/\\2>/";
     $matches = array();
@@ -117,6 +121,7 @@ function flip_text($text='', $reverse=false, $flip=false) {
     $matches3 = array();
     $replace3 = array();
 
+    $text = str_replace($specialsearch, $specialreplace, $text);
 
     /// Let's break the original text apart
     preg_match_all($regex, $text, $matches, PREG_SET_ORDER);
@@ -169,6 +174,8 @@ function flip_text($text='', $reverse=false, $flip=false) {
         $rtext = flip_text($match[3], $reverse, $flip);
         $text = str_replace($replace[$key], $starttag.$rtext.$endtag, $text);
     }
+
+    $text = str_replace($specialreplace, $specialsearch, $text);
 
     return $text;
 }

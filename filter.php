@@ -54,6 +54,11 @@ function langflip_filter($courseid, $text) {
  */
 function flip_text($text='', $reverse=false, $flip=false) {
 
+    /// Just return the text if we're not doing anything
+    if (!$reverse and !$flip) {
+        return $text;
+    }
+
     /// Define the unicode alternative characters
     static $alphabet = null;
 
@@ -150,7 +155,7 @@ function flip_text($text='', $reverse=false, $flip=false) {
 
     /// Reverse text
     if ($reverse) {
-        $text = strrev($text);
+        $text = utf8_strrev($text);
     }
 
     /// Flip it over
@@ -178,6 +183,18 @@ function flip_text($text='', $reverse=false, $flip=false) {
     $text = str_replace($specialreplace, $specialsearch, $text);
 
     return $text;
+}
+
+/**
+ * Unicode friendly strrev function
+ * from Martin Dougiamas - thanks
+ *
+ * @param string $str  text to reverse
+ * @return string
+ */
+function utf8_strrev($str){
+    preg_match_all('/./us', $str, $ar);
+    return join('',array_reverse($ar[0]));
 }
 
 ?>

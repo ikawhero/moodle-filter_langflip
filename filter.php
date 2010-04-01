@@ -192,9 +192,12 @@ function flip_text($text='', $reverse=false, $flip=false) {
  * @param string $str  text to reverse
  * @return string
  */
-function utf8_strrev($str){
-    preg_match_all('/./us', $str, $ar);
-    return join('',array_reverse($ar[0]));
+function utf8_strrev($str) {
+    preg_match_all('/./us', $str, $ar);
+    if (!empty($ar)) {
+        $str = join('', array_reverse($ar[0]));
+    }
+    return $str;
 }
 
 ?>

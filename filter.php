@@ -150,7 +150,7 @@ function flip_text($text='', $reverse=false, $flip=false) {
 
     /// Flip it over
     if ($flip) {
-        $text = strtr(strtolower($text), $alphabet);
+        $text = strtr(moodle_strtolower($text), $alphabet);
     }
 
 
@@ -172,6 +172,5 @@ function flip_text($text='', $reverse=false, $flip=false) {
 
     return $text;
 }
-
 
 ?>

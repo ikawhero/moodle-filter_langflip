@@ -89,6 +89,15 @@ function flip_text($text='', $reverse=false, $flip=false) {
                 'x' => 'x',
                 'y' => 'ʎ',
                 'z' => 'z'
+                );
+         $numbers = array( '9' => '6',
+                '7' => 'ㄥ',
+                '6' => '9',
+                '5' => 'ގ',
+                '4' => 'ㄣ',
+                '3' => 'ᄐ',
+                '2' => 'ᄅ',
+                '1' => '⇂'
                     );
 
         $others = array( '!' => '¡',
@@ -101,7 +110,9 @@ function flip_text($text='', $reverse=false, $flip=false) {
                 ']' => '[',
                 ';' => '؛',
                 '\'' => ',',
-                '.' => '˙'
+                ','  => '\'',
+                '.'  => '˙',
+                '˙'  => '.'
                 );
 
         $alphabet = $latin + $others;
@@ -116,8 +127,8 @@ function flip_text($text='', $reverse=false, $flip=false) {
     $matches = array();
     $replace = array();
 
-    /// Short tags
-    $regex2 = "/(<[A-Za-z].*?\/>)/";
+    /// Any other tags
+    $regex2 = "/(<[A-Za-z].*?>)/";
     $matches2 = array();
     $replace2 = array();
 
@@ -163,7 +174,6 @@ function flip_text($text='', $reverse=false, $flip=false) {
         $text = strtr(moodle_strtolower($text), $alphabet);
     }
 
-
     /// And now let's put the pieces back together
     foreach ($matches3 as $key=>$match) {
         $text = str_replace($replace3[$key], $match[0], $text);
@@ -193,11 +203,13 @@ function flip_text($text='', $reverse=false, $flip=false) {
  * @return string
  */
 function utf8_strrev($str) {
-    preg_match_all('/./us', $str, $ar);
-    if (!empty($ar)) {
-        $str = join('', array_reverse($ar[0]));
+    $ar = array();
+    preg_match_all('/./us', $str, $ar, PREG_PATTERN_ORDER);
+    if (!empty($ar[0])) {
+        $rev = array_reverse($ar[0]);
+        $revstr = implode('', $rev);
     }
-    return $str;
+    return $revstr;
 }
 
 ?>

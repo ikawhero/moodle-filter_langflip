@@ -1,0 +1,42 @@
+Langflip filter for Moodle
+Copyright (C) 2010 Pukunui Technology
+Author: Shane Elliott, Pukunui Technology (http://moodle.com.au/)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details:
+
+http:www.gnu.org/copyleft/gpl.html
+
+
+Langflip filter for Moodle
+===============================================================================
+
+Reverses the text and turns the characters upside down.
+
+The filter uses unicode characters as representation of upside down latin
+alphabet characters.
+
+I only wrote this filter as a fun project so if you find any bugs, please let
+me know and I'll do my best to fix them when I get some time. Or even better,
+if you can fix them then please feel free to send me a patch or a pull request
+via github.
+
+
+Known Bugs:
+It sometimes clashes with other filters especially the Tex and Algebra notation
+if it's lower down the order.
+
+
+Installation:
+    * see http://docs.moodle.org/en/Installing_contributed_modules_or_plugins
+
+Unzip, rename the folder as langflip and place it in the /filter/ folder of
+your moodle installation.
+
